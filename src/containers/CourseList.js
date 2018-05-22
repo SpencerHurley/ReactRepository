@@ -12,6 +12,8 @@ class CourseList extends Component {
         });
         return courseList;
     }
+
+    
 }
 
 class CourseRow extends Component {
