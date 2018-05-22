@@ -31,5 +31,6 @@ class CourseRow extends Component {
             </tr>
         )
     }
-
 }
+
+export default class CourseList;
