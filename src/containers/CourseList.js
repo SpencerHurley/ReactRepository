@@ -5,15 +5,18 @@ class CourseList extends Component {
 
     constructor(props) {
         super(props);
-        let courses = CourseServiceClient.findAllCourses();
-        console.log(courses);
-        this.state = {
-            courses : courses
-        }
+        this.courseService = CourseServiceClient.instance;
     }
 
     render() {
-        return this.renderListCourses(this.state.courses);
+        let courses = this.courseService.findAllCourses();
+        console.log(courses);
+        return (
+            <div>
+                Hello
+            </div>
+        )
+        //return this.renderListCourses();
     }
 
     renderListCourses(courses) {
@@ -48,4 +51,4 @@ class CourseRow extends Component {
     }
 }
 
-export default class CourseList;
+export default CourseList
