@@ -25,7 +25,7 @@ export default class CourseServiceClient {
     }
 
 
-    createCourse(courseId) {
+    deleteCourse(courseId) {
         const COURSE_API_URL = 'http://localhost:8080/api/course/' + courseId;
         return fetch(COURSE_API_URL,
             {   headers: { 'Content-Type': 'application/json' },

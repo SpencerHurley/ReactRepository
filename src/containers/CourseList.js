@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
+import CourseServiceClient from '../services/CourseServiceClient';
 
 class CourseList extends Component {
 
+    constructor(props) {
+        super(props);
+        let courses = CourseServiceClient.findAllCourses();
+        console.log(courses);
+        this.state = {
+            courses : courses
+        }
+    }
+
+    render() {
+        return this.renderListCourses(this.state.courses);
+    }
 
     renderListCourses(courses) {
-        let courseList = this.state.courses.map(function(course) {
+        let courseList = courses.map(function(course) {
             return <CourseRow title={course.title}
                               ownedBy={course.ownedBy}
                               lastUpdated={course.lastUpdated}
