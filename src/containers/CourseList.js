@@ -6,27 +6,37 @@ class CourseList extends Component {
     constructor(props) {
         super(props);
         this.courseService = CourseServiceClient.instance;
+        this.createCourse = this.createCourse.bind(this);
+        this.deleteCourse = this.deleteCourse.bind(this);
+        this.state = {
+            courses: []
+        }
     }
 
     render() {
-        let courses = this.courseService.findAllCourses();
-        console.log(courses);
-        return (
-            <div>
-                Hello
-            </div>
-        )
-        //return this.renderListCourses();
+        return this.renderListCourses(this.state.courses);
+    }
+
+    componentDidMount() {
+        this.courseService.findAllCourses().then((value) => this.setState({courses : value}));
     }
 
     renderListCourses(courses) {
         let courseList = courses.map(function(course) {
             return <CourseRow title={course.title}
-                              ownedBy={course.ownedBy}
-                              lastUpdated={course.lastUpdated}
+                              ownedBy={course.modified}
+                              lastUpdated={course.modified}
             />
         });
         return courseList;
+    }
+
+    createCourse() {
+
+    }
+
+    deleteCourse() {
+
     }
 
     
@@ -42,10 +52,8 @@ class CourseRow extends Component {
             <tr className="list-group-item">
                 <td>{this.props.title}</td>
                 <td>{this.props.ownedBy}</td>
-                <td>{this.props.lastUpdated}</td>
-                <td>
-                    <button onClick={this.delete.bind(this)}>Delete</button>
-                </td>
+                <td>{this.props.modified}</td>
+
             </tr>
         )
     }
